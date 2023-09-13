@@ -79,7 +79,19 @@ public class GameActivity extends AppCompatActivity {
     // Handle key events to move the player
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO logic to move the player (remember to check collisions)
+        // Update Player Position
+        if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+            playerX -= 50;
+        } else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            playerY -= 50;
+        } else if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+            playerX += 50;
+        } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+            playerY += 50;
+        }
+        playerView.updatePosition(playerX, playerY);
+        checkCollisions(); // Must perform collision check after the player moves
+        return true;
     }
 
     private void initializeDots() {
