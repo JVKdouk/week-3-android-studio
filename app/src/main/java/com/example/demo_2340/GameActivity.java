@@ -136,7 +136,9 @@ public class GameActivity extends AppCompatActivity {
                     launchGameWinActivity();
                 }
             } else if (dot.isExpired()) { // TODO: Checks if dots have expired.
-                
+                dot.setInvisible();
+                gameLayout.removeView(dotViewMap.get(dot));
+                dots.remove(i);
             }
         }
     }
