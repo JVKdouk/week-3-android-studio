@@ -95,7 +95,14 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initializeDots() {
-        // TODO Create and add dots with random positions
+        // Generate dots with random positions
+        for (int i = 0; i < 20; i++) {
+            float randomX = random.nextFloat() * screenWidth;
+            float randomY = random.nextFloat() * screenHeight;
+            int radius = 50;
+            Dot dot = new Dot(randomX, randomY, radius);
+            dots.add(dot);
+        }
     }
 
     /*
@@ -111,12 +118,23 @@ public class GameActivity extends AppCompatActivity {
 
     // Maintains 20 dots on screen
     private void respawnDotsIfNeeded() {
-        // TODO: if dots drop below 20, respawn dots
+        int visbleDotCount = dots.size();
+        int dotsToRespawn = MAX_DOTS - visbleDotCount;
+        for (int i = 0; i < dotsToRespawn; i++) {
+            respawnDot();
+        }
     }
 
     // Recreates the dots. Respawn mechanic
     private void respawnDot() {
-        //TODO: randomly spawn a dot (need to make both UI and background class)
+        float randomX = random.nextFloat() * screenWidth;
+        float randomY = random.nextFloat() * screenHeight;
+        int radius = 50;
+        Dot dot = new Dot(randomX, randomY, radius);
+        dots.add(dot);
+        DotView dotView = new DotView(this, dot);
+        gameLayout.addView(dotView);
+        dotViewMap.put(dot, dotView);
     }
 
     /*
